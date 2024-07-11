@@ -19,10 +19,6 @@ async function sendReferrerEmail(  refereeName ,referrerName, courseName,referee
 		},
 	});
 
-	console.log("Referrer Name:", referrerName);
-    console.log("Referee Name:", refereeName);
-    console.log("Referee Email:", refereeEmail);
-    console.log("Course Name:", courseName);
 	let message = {
 		from: fromEnv('Email'),
 		to: refereeEmail,
