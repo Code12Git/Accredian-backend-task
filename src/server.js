@@ -18,7 +18,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/',()=>{res.status(200).json({message: 'Working'})});
+app.get('/',(req,res)=>{res.status(200).json({message: 'Working'})});
 
 
 app.listen(PORT, () => {
