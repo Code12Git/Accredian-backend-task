@@ -18,6 +18,8 @@ app.use((req, res, next) => {
     next();
 });
 
+app.get('/',()=>{res.status(200).json({message: 'Working'})});
+
 
 app.listen(PORT, () => {
     logger.info(`🚀 Server is running on port ${PORT}`);
