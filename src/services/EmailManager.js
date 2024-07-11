@@ -3,7 +3,7 @@ const { fromEnv } = require('../utils')
 const logger = require('../utils/logger');
 const oauth2Client = require('../config/oauth2')
 
-async function sendReferrerEmail( referrerEmail, refereeName ) {
+async function sendReferrerEmail(  refereeName ,referrerName, courseName,refereeEmail ) {
     const accessToken = await oauth2Client.getAccessToken();
 
 	let transporter = nodemailer.createTransport({
@@ -19,12 +19,16 @@ async function sendReferrerEmail( referrerEmail, refereeName ) {
 		},
 	});
 
+	console.log("Referrer Name:", referrerName);
+    console.log("Referee Name:", refereeName);
+    console.log("Referee Email:", refereeEmail);
+    console.log("Course Name:", courseName);
 	let message = {
-		from: fromEnv('EMAIL'),
-		to: referrerEmail,
+		from: fromEnv('Email'),
+		to: refereeEmail,
 		subject: 'Referral Confirmation',
-        text: `You have successfully referred ${refereeName}.`,
-        html: `<h1>You have successfully referred ${refereeName}.</h1>`,
+	    text: `Hello ${refereeName},${referrerName} has referred you to the course: ${courseName}.\n\nCheck it out!\n\nBest regards,\nRefer & Earn Team`,
+        html: `<h1>Hello ${refereeName},${referrerName} has referred you to the course: ${courseName}.\n\nCheck it out!\n\nBest regards,\nRefer & Earn Team.</h1>`,
 	};
 
 	try {
